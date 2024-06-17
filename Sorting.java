@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class Sorting {
 
     static void print_array(int[] arr){
@@ -127,9 +126,45 @@ public class Sorting {
         }
     }
 
+    static void QuickSort(int[] arr, int low, int high){
+        if (low < high){
+            int partition = partition_index(arr, low, high);
+            QuickSort(arr, low, partition - 1);
+            QuickSort(arr,partition +1, high);
+        }
+    }
+    static void swap(int [] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        System.out.println(temp+" swapped "+ arr[i] );
+    }
+    static int partition_index(int [] arr,int low, int high){
+        int pivot = arr[low];
+        int i;
+
+        i = low + 1;
+
+        int j = high;
+        while (i < j){
+            while (arr[i] < pivot && i<= high -1){
+                ++i;
+            }
+            while (arr[j] >= pivot && j >= low +1){
+                j--;
+            }
+            if (i<j)
+                swap(arr, i,j);
+        }
+        System.out.println("swapping pivot "+arr[low]);
+        swap(arr, j, low);
+        System.out.println("Prtition is "+arr[j]);
+        print_array(arr);
+        return j;
+    }
 
     public static void main(String[] args) {
-        int [] arr = {34,56,2,4,546,45,67,76,536,67,66,48,36};
+        int [] arr = {5,6,1,8,3,2,5,3};//{34,56,2,4,546,45,67,76,536,67,66,48,36};
         print_array(arr);
         System.out.println();
 //        Selection_Sort(arr);
@@ -139,5 +174,6 @@ public class Sorting {
 //        opt_Bubble_Sort(arr);
 //        Insertion_sort(arr);
 //        Merge_Sort(arr,0,arr.length-1);
+        QuickSort(arr,0,arr.length -1);
     }
 }
