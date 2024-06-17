@@ -147,7 +147,7 @@ public class Sorting {
 
         int j = high;
         while (i < j){
-            while (arr[i] < pivot && i<= high -1){
+            while (arr[i] < pivot && i< high ){
                 ++i;
             }
             while (arr[j] >= pivot && j >= low +1){
@@ -157,7 +157,8 @@ public class Sorting {
                 swap(arr, i,j);
         }
         System.out.println("swapping pivot "+arr[low]);
-        swap(arr, j, low);
+        if (arr[j] < arr[low])
+            swap(arr, j, low);
         System.out.println("Prtition is "+arr[j]);
         print_array(arr);
         return j;
